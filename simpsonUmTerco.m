@@ -1,5 +1,5 @@
 function ret = simpsonUmTerco(interInicial, interFinal, janela, funcao)
-digits(6); % Define a precisão em 6 digitos após a virgula!
+digits(10); % Define a precisão em 6 digitos após a virgula!
 % h = b - a
 %     -----
 %     2 * N
@@ -55,14 +55,15 @@ function ret = calculaSimpsonUmTerco(array, valorH, numeroDivisoes)
     x = 0.000000;
     fprintf("Numero de divisões: %.6f\n", numeroDivisoes);
     fprintf("Valor de valorH: %.6f\n", valorH);
-
+    j = 1;
     for i = 1:2:numeroDivisoes
         % formula ( h ) x [(f(x1) + 4*f(x2) + f(x3)]  
         %         (/3 )
         x = x + (vpa(valorH/3) * (array(2,i) + (4 * array(2,(i+1))) + array(2,(i+2))));
-        fprintf("O valor de Ix%d: %.6f\n", i, (vpa(valorH/3) * (array(2,i) + (4 * array(2,(i+1))) + array(2,(i+2)))));
-        %fprintf("h: %.6f ", vpa(valorH/3)); 
-        %fprintf("f(x%d): %.6f, 4*f(x%d): %.6f, f(x%d): %.6f\n", i, array(2,i), i+1, (4*array(2,(i+1))), i+3, array(2,(i+2)));
+        fprintf("O valor de Sx%d: %.6f\n", j, (vpa(valorH/3) * (array(2,i) + (4 * array(2,(i+1))) + array(2,(i+2)))));
+        fprintf("h: %.6f ", vpa(valorH/3)); 
+        fprintf("f(x%d): %.6f, 4*f(x%d): %.6f, f(x%d): %.6f\n", i, array(2,i), i+1, (4*array(2,(i+1))), i+2, array(2,(i+2)));
+        j = j + 1;
     end
     ret = vpa(x);
 end

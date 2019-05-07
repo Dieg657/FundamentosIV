@@ -1,5 +1,5 @@
 function ret = simpsonTresOitavos(interInicial, interFinal, janela, funcao)
-digits(6); % Define a precisão em 6 digitos após a virgula!
+digits(10); % Define a precisão em 6 digitos após a virgula!
 % h = b - a
 %     -----
 %     3 * N
@@ -55,14 +55,15 @@ function ret = calculaSimpsonTresOitavos(array, valorH, numeroDivisoes)
     x = 0.000000;
     fprintf("Numero de divisões: %.6f\n", numeroDivisoes);
     fprintf("Valor de valorH: %.6f\n", valorH);
-
+    j = 1;
     for i = 1:3:numeroDivisoes
         % formula ( 3*h ) x [(f(x1) + 3*f(x2) + 3*f(x3) + f(x4)]  
         %         ( /8 )
-        x = x + (vpa(valorH/3) * (array(2,i) + (3 * array(2,(i+1))) + (3 * array(2,(i+2))) + array(2,(i+3))));
-        %fprintf("O valor de Ix%d: %.6f\n", i, (vpa(valorH/3) * (array(2,i) + (4 * array(2,(i+1))) + array(2,(i+2)))));
+        x = x + (vpa((3*valorH)/8) * (array(2,i) + (3 * array(2,(i+1))) + (3 * array(2,(i+2))) + array(2,(i+3))));
+        fprintf("O valor de Sx%d: %.6f\n", j, vpa(valorH/8) * (array(2,i) + 3*array(2,(i+1)) + 3*array(2,(i+2)) + array(2,(i+3))));
         fprintf("h: %.6f ", vpa((3*valorH)/8)); 
-        fprintf("f(x%d): %.6f, 3*f(x%d): %.6f, 3*f(x%d): %.6f, f(x%d): %.6f\n", i, array(2,i), i+1, (3*array(2,(i+1))), i+2, (4*array(2,(i+2))), i+3, array(2,(i+3)));
+        fprintf("f(x%d): %.6f, 3*f(x%d): %.6f, 3*f(x%d): %.6f, f(x%d): %.6f\n", i, array(2,i), i+1, (3*array(2,(i+1))), i+2, (3*array(2,(i+2))), i+3, array(2,(i+3)));
+        j = j + 1;
     end
     ret = vpa(x);
 end
