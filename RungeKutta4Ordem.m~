@@ -1,5 +1,5 @@
 function res = RungeKutta4Ordem(x, y, xFinal, h, funcao)
-  iteracoes = (xFinal - x)/h;
+  iteracoes = (xFinal - x)/h 
     for i = 1:iteracoes
          y = RungeKutta(x, y, h, funcao);
          x = x + h;

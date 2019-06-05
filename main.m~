@@ -2,7 +2,7 @@
 % Diego dos Santos Soares - 2014.2.0028.0195-8
 clear all
 clc
-z = RungeKutta4Ordem(-10000, 5, 6.4, 0.2, @funcaoRunge);
+z = RungeKutta4Ordem(1.5, , 2.5, 0.5, @funcaoRunge);
 
 %{
 function ret = calcular(inicial, final, janela, erro)
