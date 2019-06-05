@@ -2,7 +2,7 @@
 % Diego dos Santos Soares - 2014.2.0028.0195-8
 
 
-z = rungekutta(1.0, 3, 0.1, funcao);
+z = RungeKutta4Ordem(1.0, 3, 0.1, 1, @funcaoRunge);
 
 %{
 function ret = calcular(inicial, final, janela, erro)
