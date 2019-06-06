@@ -5,8 +5,10 @@ clc
 % z = RungeKutta4Ordem(1.1, 5, 6.4, 0.001, @funcaoRunge);
 %w = calcular(1, 3, 4, 0.139383);
 %disp(w);
+digits(10);
 disp('Romberg:');
-metodoRomberg(0,2,5,2,@funcaoY);
+x = metodoRomberg(0,4,6funcaoY,5216.926477,0.0004);
+disp(vpa(x));
 
 %{
 function ret = calcular(inicial, final, janela, erro)
@@ -30,10 +32,6 @@ function ret = calcular(inicial, final, janela, erro)
     ret = x;
 end
 %}
-
-
-    
-
 
 
 function res = calculaErroRelativo(real, medido)

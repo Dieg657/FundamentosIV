@@ -1,27 +1,34 @@
-function res = metodoRomberg(xInicial, xFinal, ordem, baseN, funcao)
+function matrizR = metodoRomberg(xInicial, xFinal, ordemN, funcao, valorFuncao, erro)
 i = 0;
 j = 0;
-matrizR = zeros(ordem, ordem);
-    for i = 1:ordem
-        matrizR(i+1, 1) = trapezio(xInicial, xFinal, baseN*i, funcao);
-        fprintf('%d Ordem: %.6f\n', baseN*i, matrizR(i+1, 1));
+
+matrizR = zeros(ordemN, ordemN);
+    for i = 1:ordemN+1
+        matrizR(i, 1) = trapezio(xInicial, xFinal, 2.^(i-1), funcao);
+        %fprintf('%d Ordem: %.6f\n', 2.^(i-1), matrizR(i, 1));
+        k = i;
+        for j = 2:k
+            R = matrizR(k,j-1) - matrizR(k-1,j-1);
+            RDem = 4.^(j-1);
+            matrizR(k,j) = matrizR(k,j-1) + (R/(RDem-1));
+        end
+        aux = abs((valorFuncao - matrizR(k,j))/valorFuncao);
+        %fprintf('Ordem: %.6f, Aux: %.6f\n', matrizR(k, j), aux);
+        if aux < erro
+            break;
+        end
     end
-    res = matrizR;
 end
 
-% 2^1 = 2 Ordem 
-% 2^2 = 4 Ordem 
-% 2^3 = 8 Ordem
-% 2^4 = 16 Ordem
 function res = trapezio(xInicial, xFinal, numeroJanelas, funcao)
-Xi = 0;
+
+Xi = 0.0;
 h = (xFinal - xInicial)/numeroJanelas;
     %
     %   Trapézio = (h/2)*(f(X0)+f(X1))
     %
     for x = xInicial:h:(xFinal-h)
-        Xi = Xi + (1/2) *(funcao(x) + funcao(x+h)) * h;
+        Xi = Xi + vpa((1/2) *(funcao(x) + funcao(x+h)) * h);
     end
-    
     res = Xi;
 end
