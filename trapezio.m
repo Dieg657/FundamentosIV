@@ -60,7 +60,6 @@ function ret = calculaTrapezio(array, valorH, numeroDivisoes)
         %         (/2 ) 
         x = x + (vpa(valorH/2) * (array(2,i) + array(2,(i+1))));
         fprintf("O valor de Ix%d: %.6f\n", i, (vpa(valorH/2) * (array(2,i) + array(2,(i+1)))));
-        %fprintf("O valor de x: %.10f, valor de f(x): %.10f\n", array(1,i), array(2,i));
     end
     ret = vpa(x);
 end
