@@ -1,11 +1,10 @@
-function res = RungeKutta4Ordem(x, y, xFinal, h, funcao)
+function RungeKutta4Ordem(x, y, xFinal, h, funcao)
   iteracoes = (xFinal - x)/h;
     for i = 1:iteracoes
          y = RungeKutta(x, y, h, funcao);
          x = x + h;
          fprintf('X%d: %.5f, Y%d: %.5f\n',i, x, i, y);
     end
-    res = 0;
 end
 
 function res = kInicial(x, y, funcao)

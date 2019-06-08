@@ -1,0 +1,50 @@
+% Wanderson Santos
+% Diego dos Santos Soares - 2014.2.0028.0195-8
+
+clear all
+clc
+
+fprintf('##########################   Jacobi   ###############################');
+metodoJacobi();
+
+fprintf('########################## Gauss-Seidel #############################');
+gaussSeidel();
+
+fprintf('########################## Runge-Kutta 4 Ordem ######################');
+RungeKutta4Ordem(1.0, 9, 1.1, 0.1, @funcaoRunge, @);
+
+calcularTrapeziosESimpson(1, 3, 4, 0.139383);
+
+fprintf('########################## Romberg ######################');
+metodoRomberg();
+
+fprintf('###################### Descida de Gradiente #########################');
+descidaGradiente(@funcaoYDescidaGradiente, 6, 0.01, 0.00001, 10000);
+
+
+function calcularTrapeziosESimpson(inicial, final, janela, valorFuncao, funcao)
+    fprintf('########################## Trapézio ##########################################');
+    medido = trapezio(inicial, final, janela, @funcaoExponencial);
+    fprintf('f(xU): %.6f\n', medido);
+    x = funcao(valorFuncao, medido);
+    fprintf('O erro é de: %.6f', x); disp('%');
+    
+    
+    fprintf('########################## Simpson 3/8 #######################################');
+    medido = simpsonTresOitavos(inicial, final, janela, @funcaoExponencial);
+    fprintf('f(xU): %.6f\n', medido);
+    x = funcao(valorFuncao, medido);
+    fprintf('O erro é de: %.6f', x); disp('%');
+    
+    fprintf('########################## Simpson 1/3 #######################################');
+    medido = simpsonUmTerco(inicial, final, janela, @funcaoExponencial);
+    fprintf('f(xU): %.6f\n', medido);
+    x = funcao(valorFuncao, medido);
+    fprintf('O erro é de: %.6f', x); disp('%');
+end
+
+
+
+
+
+

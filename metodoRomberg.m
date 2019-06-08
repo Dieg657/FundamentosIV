@@ -1,10 +1,16 @@
-function matrizR = metodoRomberg(xInicial, xFinal, ordemN, funcao, valorFuncao, erro)
+function matrizR = metodoRomberg()
+
+xInicial = 0;
+xFinal = 4;
+ordemN = 7;
+valorFuncao = 5216.926477;
+erro = 0.0001;
 i = 0;
 j = 0;
 
 matrizR = zeros(ordemN, ordemN);
     for i = 1:ordemN+1
-        matrizR(i, 1) = trapezio(xInicial, xFinal, 2.^(i-1), funcao);
+        matrizR(i, 1) = trapezio(xInicial, xFinal, 2.^(i-1), @funcaoY);
         %fprintf('%d Ordem: %.6f\n', 2.^(i-1), matrizR(i, 1));
         k = i;
         for j = 2:k
@@ -18,6 +24,7 @@ matrizR = zeros(ordemN, ordemN);
             break;
         end
     end
+    disp(matrizR);
 end
 
 function res = trapezio(xInicial, xFinal, numeroJanelas, funcao)

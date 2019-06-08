@@ -1,4 +1,5 @@
-function gaussSeidel()
+function metodoJacobi()
+
 N = 3;
 A = [5 -2 3; -3 9 1; 2 -1 -7];
 b = [-1 2 3];
@@ -19,7 +20,7 @@ while valorX > erro % Verifica se o valor de x é maior que o erro definido!
         %do vetor chute!
         %Começa a funcionar apenas quando o X2 está isolado!
         for j=1:i-1
-                S = S + (A(i,j) * xAtual(j));
+                S = S + (A(i,j) * xAnterior(j));
                 %fprintf('Linha 17, Iteracao: %d, i: %d, S: %6.f, x: %.6f\n', GaussItr+1, i, S, x(j));
         end
         
@@ -40,6 +41,6 @@ while valorX > erro % Verifica se o valor de x é maior que o erro definido!
 end
 fprintf('Solução para o sistema é:\n');
 disp(xAtual);
-fprintf('com %d iterações de Gauss-Seidel!\n', iteracoes);
+fprintf('com %d iterações de Jacobi!\n', iteracoes);
 end
 
